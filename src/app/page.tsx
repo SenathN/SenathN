@@ -11,9 +11,18 @@ export default function Home() {
         </p>
       </div>
 
-      <main className="flex flex-col gap-1 h-[300em]">
-        <div>Developer</div>
-        {/* <IntroScene/> */}
+      <main className="flex flex-col gap-1 items-center">
+        <div>
+          <IntroScene/>
+          <div className="my-[2em] flex gap-[2em] text-stone-500 justify-center">
+            { ['*','*','*','*'].map(l => <span>{l}</span>) }
+          </div>
+        </div>
+        
+        <section>
+          Developer
+        </section>
+
       </main>
 
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
