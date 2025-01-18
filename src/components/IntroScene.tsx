@@ -27,8 +27,8 @@ const IntroScene: React.FC = () => {
     // Load GLTF/GLB Model
     const loader = new GLTFLoader();
     loader.load(
-      // 'disabled', // Path to your model
-      'models/main.glb', // Path to your model
+      'disabled', // Path to your model
+      // 'models/main.glb', // Path to your model
       (gltf) => {
         const camera :THREE.Camera = gltf.cameras[0];
         const model = gltf.scene;

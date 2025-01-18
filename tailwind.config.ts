@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        jersey: ['jersey_15', 'sans-serif'],
+        poppins: ['Poppins', 'Tofu'],
+      },
     },
   },
   plugins: [],
