@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three-stdlib';
 
 
-const IntroScene: React.FC = () => {
+const EntryScene3D: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -104,4 +104,4 @@ const IntroScene: React.FC = () => {
   return <div ref={mountRef} style={{ width: '100vw', height: '100vh' }} />;
 };
 
-export default IntroScene;
+export default EntryScene3D;
