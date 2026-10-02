@@ -1,72 +1,121 @@
+import fs from "node:fs";
+import path from "node:path";
+import Nav from "@/components/Nav";
+import Hero from "@/components/Hero";
+import RangeAccordion from "@/components/RangeAccordion";
+import ArtViewer from "@/components/ArtViewer";
 import Footer from "@/components/Footer";
-import Highlights from "@/components/Highlights";
-import EntryScene3D from "@/components/EntryScene3D";
-import * as motion from "motion/react-client"
-import EntryScene from "@/components/EntryScene";
+import { site } from "../../content/site";
+
+function getArtModels(): string[] {
+  const dir = path.join(process.cwd(), "public", "art");
+  try {
+    return fs
+      .readdirSync(dir)
+      .filter((f) => f.toLowerCase().endsWith(".glb") || f.toLowerCase().endsWith(".gltf"));
+  } catch {
+    return [];
+  }
+}
 
 export default function Home() {
+  const artModels = getArtModels();
 
   return (
-    <div className={"relative grid grid-rows-[4em_1fr_10em] min-h-screen"}>
+    <>
+      <Nav />
+      <main id="main">
+        <Hero />
 
-      <motion.div
-        className="px-[1em] flex flex-col justify-center w-full border-b border-b-stone-600"
-        initial={{ y: '-100%' }}
-        animate={{ y: 0 }}
-        transition={{
-            duration: 0.4,
-            y: { type: "tween", bounce: 0, delay: 0},
-        }}
-      >
+        <section id="range" className="container-px max-content py-24 md:py-32">
+          <h2 className="font-display text-4xl md:text-6xl mb-12 max-w-2xl">
+            One engineer, four disciplines.
+          </h2>
+          <RangeAccordion />
+        </section>
 
-        <p className="font-jersey text-[42px]">
-          Senath.n
-        </p>
+        <section id="about" className="container-px max-content py-24 md:py-32">
+          <p className="font-display text-3xl md:text-5xl leading-snug max-w-3xl">
+            {site.statement.split(". ")[0]}.{" "}
+            <span className="text-[var(--accent)]">
+              {site.statement.split(". ")[1]}
+            </span>
+          </p>
+          <ul className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8">
+            {site.facts.map((fact) => (
+              <li key={fact} className="border-t-2 border-[var(--accent)] pt-4 text-[var(--muted)]">
+                {fact}
+              </li>
+            ))}
+          </ul>
+        </section>
 
-      </motion.div>
+        <section id="work" className="container-px max-content py-24 md:py-32">
+          <h2 className="font-display text-4xl md:text-6xl mb-16">Work</h2>
+          <div className="flex flex-col divide-y divide-[var(--line)]">
+            {site.experience.map((job, i) => (
+              <div key={i} className="grid md:grid-cols-[1fr_2fr] gap-4 py-10">
+                <div>
+                  <h3 className="font-display text-2xl md:text-3xl">{job.company}</h3>
+                  <p className="text-[var(--muted)] mt-1">{job.role}</p>
+                  <p className="text-sm text-[var(--muted)] mt-1">{job.period}</p>
+                </div>
+                <ul className="space-y-2 text-[var(--ink)]">
+                  {job.points.map((point) => (
+                    <li key={point} className="text-base md:text-lg">
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
 
-      <main className="flex flex-col gap-1 items-center">
-        
-        <section className="w-full h-[60vh] relative">
-
-          {/* <EntryScene3D/> */}
-          <EntryScene/>
-          
-          <div className="absolute left-0 bottom-0 md:w-1/3 px-2 md:px-4 text-left">
-            <motion.div
-                initial={{ opacity: 0, y: '50%' }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                    duration: 0.4,
-                    x: { type: "tween", bounce: 0, delay: .5},
-                }}
-            >
-              <p>Paragraph of introduction</p>
-              <p className="text-sm text-stone-700 font-light">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque reprehenderit aliquam reiciendis odio
-              </p>
-                
-            </motion.div>
+          <div className="grid md:grid-cols-2 gap-6 mt-16">
+            {site.projects.map((project) => (
+              <div
+                key={project.name}
+                className="p-8 bg-[var(--ink-tint,#1D1650)] text-[#F5F3FF] rounded-sm flex flex-col justify-between min-h-[220px]"
+                style={{ backgroundColor: "#1D1650" }}
+              >
+                <div>
+                  <h3 className="font-display text-2xl mb-2">{project.name}</h3>
+                  <p className="text-[#C4BAFF]">{project.description}</p>
+                </div>
+                <p className="text-sm text-[#9A94C4] mt-6">{project.status}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        <Separator/>
-        
-        <Highlights className="w-full"/>
+        <section id="form" className="container-px max-content py-24 md:py-32">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="font-display text-[8rem] md:text-[12rem] leading-none text-[var(--accent)]">
+                {site.art.count}
+              </p>
+              <p className="text-lg md:text-xl max-w-sm">{site.art.caption}</p>
+              <p className="text-[var(--muted)] mt-2">{site.art.detail}</p>
+            </div>
+            <ArtViewer models={artModels} />
+          </div>
+        </section>
 
-        <Separator/>
-
+        <section id="contact" className="bg-[#6B4DFF] text-[#F5F3FF] py-32">
+          <div className="container-px max-content">
+            <h2 className="font-display text-4xl md:text-6xl mb-10">
+              Let&rsquo;s build something.
+            </h2>
+            <a
+              href={`mailto:${site.email}`}
+              className="font-display text-3xl md:text-6xl underline underline-offset-8 break-all"
+            >
+              {site.email}
+            </a>
+          </div>
+        </section>
       </main>
-
-      <Footer patternColor="red" className=""/>
-    </div>
+      <Footer />
+    </>
   );
-}
-
-const Separator = () => {
-  return (
-    <div className="w-full my-[5em] flex gap-[4em] text-stone-500 justify-center">
-      {/* { ['*','*','*','*'].map(l => <span>{l}</span>) } */}
-      <hr className="mx-10 h-[.1em] w-full bg-stone-300"/>
-    </div>);
 }

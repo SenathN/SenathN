@@ -3,36 +3,92 @@
 @tailwind utilities;
 
 :root {
-  --background: #ededed;
-  --foreground: #171717;
+  --bg: #f5f3ff;
+  --ink: #0f0c24;
+  --muted: #5e5a7e;
+  --line: rgba(15, 12, 36, 0.13);
+  --accent: #5a3df0;
+}
 
-  /* --background: #171717;
-  --foreground: #ededed; */
+:root[data-theme="dark"] {
+  --bg: #0f0c24;
+  --ink: #f5f3ff;
+  --muted: #9a94c4;
+  --line: rgba(245, 243, 255, 0.15);
+  --accent: #a08dff;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    /* --background: #171717; */
-    /* --foreground: #ededed; */
-
-    /* --background: #ededed; */
-    /* --foreground: #171717; */
+  :root:not([data-theme="light"]) {
+    --bg: #0f0c24;
+    --ink: #f5f3ff;
+    --muted: #9a94c4;
+    --line: rgba(245, 243, 255, 0.15);
+    --accent: #a08dff;
   }
 }
 
-@font-face {
-  font-family: 'jersey_15';
-  src: url('./fonts/Jersey15-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
+* {
+  border-color: var(--line);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.name-display {
+  font-family: var(--font-display), serif;
+  font-size: clamp(3rem, 16vw, 13rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+}
+
+.container-px {
+  padding-left: clamp(1.25rem, 5vw, 5rem);
+  padding-right: clamp(1.25rem, 5vw, 5rem);
+}
+
+.max-content {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
 }

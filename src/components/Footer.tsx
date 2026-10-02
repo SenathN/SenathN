@@ -1,21 +1,12 @@
-import React from 'react'
+import { site } from "../../content/site";
 
-const Footer :React.FC<{patternColor? :string, className? :string}> = ({patternColor = 'red', className}) => {
-    const styles = {
-        backgroundColor: 'transparent',
-        opacity: '0.2',
-        backgroundImage: 'radial-gradient('+patternColor+' 0.95px, transparent 1.95px)',
-        backgroundSize: '35px 35px',
-    }
-
-    return (
-        <div className={`${className} py-[3em] relative border-t border-red-300 `}>
-            <div className='z-2'>
-                <h2 className='text-center' style={{letterSpacing: '1em'}}>Find me.</h2>
-            </div>
-            <div className='w-full h-full absolute top-0 z-10' style={styles}></div>
-        </div>
-    )
+export default function Footer() {
+  return (
+    <footer className="bg-[#0F0C24] text-[#9A94C4] py-10">
+      <div className="container-px max-content flex flex-col md:flex-row justify-between gap-4 text-sm">
+        <span className="font-display text-lg text-[#F5F3FF]">{site.name}</span>
+        <span>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+      </div>
+    </footer>
+  );
 }
-
-export default Footer

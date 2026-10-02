@@ -1,28 +1,36 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode: ["class"],
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        bg: "var(--bg)",
+        ink: "var(--ink)",
+        muted: "var(--muted)",
+        line: "var(--line)",
+        accent: "var(--accent)",
+        violet: "#6B4DFF",
+        "deep-violet": "#4630D0",
+        "ink-tint": "#1D1650",
+        lilac: "#C4BAFF",
+        "pale-lilac": "#DCD5FF",
       },
       fontFamily: {
-        jersey: ['jersey_15', 'sans-serif'],
-        poppins: ['Poppins', 'Tofu'],
+        display: ["var(--font-display)", "serif"],
+        body: ["var(--font-body)", "sans-serif"],
       },
     },
     screens: {
-      'sm': '640px',  // Small screens (phones)
-      'md': '768px',  // Medium screens (tablets)
-      'lg': '1024px', // Large screens (laptops)
-      'xl': '1280px', // Extra large screens (desktops)
-      '2xl': '1536px', // 2x extra large screens
+      sm: "480px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
     },
   },
   plugins: [],
