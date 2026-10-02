@@ -3,13 +3,18 @@ import { site } from "../../content/site";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex flex-col justify-center items-start container-px max-content">
-      <p className="font-display italic text-xl text-[var(--muted)] mb-4">
+    <main className="min-h-screen flex flex-col justify-center container-px max-content">
+      <p className="label mb-6">
+        <span className="text-[var(--dim)]">404/</span>
         {site.name}
       </p>
-      <h1 className="font-display text-5xl md:text-7xl mb-6">Page not found.</h1>
-      <Link href="/" className="text-[var(--accent)] underline underline-offset-4 text-lg">
-        Back home
+      <h1 className="display-xl">
+        Not
+        <br />
+        <span className="text-[var(--dim)]">found.</span>
+      </h1>
+      <Link href="/" className="mono text-sm mt-10 link-underline w-fit">
+        ← Back home
       </Link>
     </main>
   );

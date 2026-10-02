@@ -1,19 +1,5 @@
-// Inline, blocking script so the correct theme attribute is present before
-// first paint, preventing a flash of the wrong theme. No external deps.
-const code = `
-(function () {
-  try {
-    var stored = localStorage.getItem('theme');
-    if (stored === 'light' || stored === 'dark') {
-      document.documentElement.setAttribute('data-theme', stored);
-    } else {
-      var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-    }
-  } catch (e) {}
-})();
-`;
-
+// Marks that JS is running before first paint, so reveal animations can hide
+// content only when they will also be able to show it again.
 export default function ThemeScript() {
-  return <script dangerouslySetInnerHTML={{ __html: code }} />;
+  return <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />;
 }

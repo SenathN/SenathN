@@ -2,10 +2,11 @@ import { site } from "../../content/site";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0F0C24] text-[#9A94C4] py-10">
-      <div className="container-px max-content flex flex-col md:flex-row justify-between gap-4 text-sm">
-        <span className="font-display text-lg text-[#F5F3FF]">{site.name}</span>
-        <span>&copy; {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+    <footer className="border-t border-[var(--line)]">
+      <div className="container-px max-content py-8 flex flex-col md:flex-row justify-between gap-3 mono text-[11px] text-[var(--muted)] uppercase tracking-wider">
+        <span className="text-[var(--ink)]">{site.name}</span>
+        <span>{site.role}</span>
+        <span>&copy; {new Date().getFullYear()}</span>
       </div>
     </footer>
   );

@@ -14,15 +14,15 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          background: "#0F0C24",
+          background: "#000000",
           padding: "64px",
         }}
       >
-        <div style={{ color: "#C4BAFF", fontSize: 28, marginBottom: 16, display: "flex" }}>
+        <div style={{ color: "#8a8a8a", fontSize: 28, marginBottom: 16, display: "flex" }}>
           {site.role}
         </div>
-        <div style={{ color: "#F5F3FF", fontSize: 108, display: "flex" }}>{site.name}</div>
-        <div style={{ width: 120, height: 8, background: "#A08DFF", marginTop: 24, display: "flex" }} />
+        <div style={{ color: "#f2f2f2", fontSize: 108, display: "flex" }}>{site.name}</div>
+        <div style={{ width: 120, height: 8, background: "#f2f2f2", marginTop: 24, display: "flex" }} />
       </div>
     ),
     { ...size }

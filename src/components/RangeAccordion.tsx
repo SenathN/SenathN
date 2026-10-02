@@ -1,28 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Icon from "./Icon";
 import { site } from "../../content/site";
-import { rangeIcons } from "./icons";
-
-const colorMap: Record<string, { bg: string; text: string }> = {
-  violet: { bg: "#6B4DFF", text: "#F5F3FF" },
-  inkTint: { bg: "#1D1650", text: "#F5F3FF" },
-  lilac: { bg: "#C4BAFF", text: "#0F0C24" },
-  deepViolet: { bg: "#4630D0", text: "#F5F3FF" },
-};
 
 export default function RangeAccordion() {
   const [openId, setOpenId] = useState<string>(site.range[0].id);
 
   return (
-    <div
-      className="flex flex-col md:flex-row w-full h-auto md:h-[520px] border border-[var(--line)] overflow-hidden rounded-sm"
-      role="list"
-    >
-      {site.range.map((panel) => {
+    <div className="flex flex-col md:flex-row border-y border-[var(--line)] md:h-[460px]">
+      {site.range.map((panel, i) => {
         const isOpen = openId === panel.id;
-        const colors = colorMap[panel.color];
-        const Icon = rangeIcons[panel.id as keyof typeof rangeIcons];
         return (
           <div
             key={panel.id}
@@ -40,41 +28,34 @@ export default function RangeAccordion() {
                 setOpenId(panel.id);
               }
             }}
-            className="relative flex-1 cursor-pointer transition-[flex-grow] duration-500 ease-out flex md:items-end items-start p-6 min-h-[88px] md:min-h-0"
-            style={{
-              flexGrow: isOpen ? 6 : 1,
-              backgroundColor: colors.bg,
-              color: colors.text,
-            }}
+            className="range-panel relative cursor-pointer border-b md:border-b-0 md:border-r last:border-0 border-[var(--line)] flex flex-col p-6 md:p-8 min-w-0 overflow-hidden"
+            style={{ flexGrow: isOpen ? 5 : 1, flexBasis: 0 }}
           >
-            <div
-              id={`panel-${panel.id}`}
-              className="w-full flex flex-col justify-end h-full"
-            >
-              <Icon
-                className={`w-6 h-6 mb-3 shrink-0 ${
-                  isOpen ? "" : "md:mb-0 md:mt-3"
-                }`}
-              />
+            <div className="flex items-center justify-between gap-4">
+              <span className="label">{String(i + 1).padStart(2, "0")}</span>
               <span
-                className={`font-display text-2xl md:text-3xl transition-[writing-mode] ${
-                  isOpen ? "" : "md:[writing-mode:vertical-rl] md:rotate-180"
+                className={`grid place-items-center w-10 h-10 rounded-full border transition-colors duration-300 ${
+                  isOpen ? "bg-white text-black border-white" : "border-[var(--line-strong)] text-[var(--muted)]"
+                }`}
+              >
+                <Icon name={panel.icon} className="w-[18px] h-[18px]" />
+              </span>
+            </div>
+
+            <div id={`panel-${panel.id}`} className="mt-auto pt-10 md:pt-0">
+              <h3
+                className={`display-md whitespace-nowrap transition-colors ${
+                  isOpen ? "text-[var(--ink)]" : "text-[var(--muted)] md:[writing-mode:vertical-rl] md:rotate-180"
                 }`}
               >
                 {panel.title}
-              </span>
+              </h3>
               {isOpen && (
-                <div className="mt-4 max-w-sm">
-                  <p className="font-display text-xl md:text-2xl italic mb-4">
-                    {panel.statement}
-                  </p>
-                  <ul className="flex flex-wrap gap-2 text-sm">
+                <div className="range-detail mt-5 max-w-md">
+                  <p className="text-lg md:text-xl text-[var(--ink)] mb-6">{panel.statement}</p>
+                  <ul className="flex flex-wrap gap-2">
                     {panel.tools.map((tool) => (
-                      <li
-                        key={tool}
-                        className="border rounded-full px-3 py-1"
-                        style={{ borderColor: colors.text + "55" }}
-                      >
+                      <li key={tool} className="mono text-xs border border-[var(--line-strong)] px-3 py-1.5">
                         {tool}
                       </li>
                     ))}

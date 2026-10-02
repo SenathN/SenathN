@@ -1,25 +1,30 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Schibsted_Grotesk } from "next/font/google";
+import { Roboto_Condensed, JetBrains_Mono, Inter } from "next/font/google";
 import ThemeScript from "@/components/ThemeScript";
 import { site } from "../../content/site";
 import "./globals.css";
 
-const display = Instrument_Serif({
-  weight: ["400"],
-  style: ["normal", "italic"],
+const condensed = Roboto_Condensed({
+  weight: ["500", "700", "800"],
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-condensed",
   display: "swap",
 });
 
-const body = Schibsted_Grotesk({
-  weight: ["400", "500", "600", "700"],
+const mono = JetBrains_Mono({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+const body = Inter({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
 });
 
-const siteUrl = "https://nimsaragamage.dev";
+const siteUrl = site.siteUrl;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -43,14 +48,16 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = { themeColor: "#000000", colorScheme: "dark" };
+
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: site.name,
   jobTitle: "Full-stack and DevOps Engineer",
-  email: `mailto:${site.email}`,
+  email: `mailto:${site.contact.email}`,
   url: siteUrl,
-  sameAs: [site.linkedinUrl],
+  sameAs: site.contact.socials.map((s) => s.url),
   address: {
     "@type": "PostalAddress",
     addressLocality: "Malabe",
@@ -64,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
+    <html lang="en" className={`${condensed.variable} ${mono.variable} ${body.variable}`}>
       <head>
         <ThemeScript />
         <script

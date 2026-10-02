@@ -1,0 +1,224 @@
+{
+  "name": "Nimsara Gamage",
+  "firstName": "Nimsara",
+  "lastName": "Gamage",
+  "role": "Software engineer, systems builder and digital artist.",
+  "tagline": "Full-stack and DevOps engineer in Malabe, Sri Lanka, with a self-taught artist's eye for form.",
+  "siteUrl": "https://nimsaragamage.dev",
+  "availability": "Open to new work",
+  "hero": {
+    "lineOne": "Nimsara",
+    "lineTwo": "Gamage",
+    "caption": "Software Engineer / DevOps",
+    "kicker": "Scalable systems. Crafted form.",
+    "cta": "Explore my work"
+  },
+  "contact": {
+    "email": "senathngamage@gmail.com",
+    "phone": "+94 78 77 1212 7",
+    "showPhone": false,
+    "location": "Malabe, Sri Lanka",
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "handle": "linkedin.com/in/senath-gamage",
+        "url": "https://linkedin.com/in/senath-gamage",
+        "icon": "linkedin"
+      }
+    ]
+  },
+  "languages": [
+    {
+      "name": "English",
+      "level": "Fluent"
+    },
+    {
+      "name": "Sinhala",
+      "level": "Native"
+    }
+  ],
+  "statement": [
+    "I build the product, then run what it lives on.",
+    "I turn slow, fragile systems into fast, reliable ones."
+  ],
+  "facts": [
+    {
+      "icon": "pin",
+      "label": "Based in",
+      "value": "Malabe, Sri Lanka"
+    },
+    {
+      "icon": "people",
+      "label": "Leads by",
+      "value": "Code review, mentoring and architecture decisions"
+    },
+    {
+      "icon": "stack",
+      "label": "Works across",
+      "value": "Full-stack and DevOps"
+    },
+    {
+      "icon": "cube",
+      "label": "Since 2016",
+      "value": "Self-taught 3D artist"
+    }
+  ],
+  "stats": [
+    {
+      "value": 40,
+      "suffix": "%",
+      "label": "Faster database queries"
+    },
+    {
+      "value": 26,
+      "suffix": "",
+      "label": "Published 3D models"
+    },
+    {
+      "value": 7.8,
+      "suffix": "K+",
+      "label": "Model views on CGTrader"
+    },
+    {
+      "value": 3,
+      "suffix": "+",
+      "label": "Years shipping production"
+    }
+  ],
+  "range": [
+    {
+      "id": "backend",
+      "icon": "server",
+      "title": "Backend",
+      "statement": "Services that stay fast as they grow.",
+      "tools": [
+        "PHP",
+        "Laravel",
+        "Go",
+        "NestJS"
+      ],
+      "color": "violet"
+    },
+    {
+      "id": "infrastructure",
+      "icon": "cloud",
+      "title": "Infrastructure",
+      "statement": "Production that runs itself.",
+      "tools": [
+        "Linux",
+        "Docker",
+        "MicroK8s",
+        "CI/CD"
+      ],
+      "color": "inkTint"
+    },
+    {
+      "id": "interfaces",
+      "icon": "window",
+      "title": "Interfaces",
+      "statement": "Front ends people enjoy using.",
+      "tools": [
+        "Vue.js",
+        "TypeScript",
+        "Next.js",
+        "React"
+      ],
+      "color": "lilac"
+    },
+    {
+      "id": "form",
+      "icon": "cube",
+      "title": "Form",
+      "statement": "A self-taught artist's eye.",
+      "tools": [
+        "Blender",
+        "Since 2016"
+      ],
+      "color": "deepViolet"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Elevex Technologies (Pvt) Ltd",
+      "roles": [
+        {
+          "title": "Software Engineer",
+          "period": "Jan 2025 — Present"
+        }
+      ],
+      "points": [
+        "Owns production deployment on Linux, Docker and MicroK8s with CI/CD.",
+        "Designs multi-tenant databases and leads front-end and back-end delivery.",
+        "Mentors junior developers through code review and technical interviews."
+      ]
+    },
+    {
+      "company": "Ceylon Linux (Pvt) Ltd",
+      "roles": [
+        {
+          "title": "Software Developer",
+          "period": "Feb 2024 — Jan 2025"
+        },
+        {
+          "title": "Intern Backend Developer",
+          "period": "Sep 2023 — Feb 2024"
+        }
+      ],
+      "points": [
+        "Built Laravel and Go microservices and cut database query times by 40%.",
+        "Maintained legacy PHP systems.",
+        "Shipped third-party integrations."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Private project management platform",
+      "description": "Internal tool for team workflows, task tracking and role-based access.",
+      "tags": [
+        "Internal tool",
+        "RBAC",
+        "Workflows"
+      ],
+      "image": null,
+      "url": null
+    },
+    {
+      "name": "Social and learning platform",
+      "description": "Hybrid social network and LMS: course delivery, progress tracking, community.",
+      "tags": [
+        "LMS",
+        "Social",
+        "Progress tracking"
+      ],
+      "image": null,
+      "url": null
+    }
+  ],
+  "education": [
+    {
+      "degree": "BEng (Hons) Software Engineering",
+      "school": "London Metropolitan University (UK) via ESOFT",
+      "period": "2025 — 2026",
+      "note": "First Class Honours, top performer"
+    },
+    {
+      "degree": "HND Information Technology",
+      "school": "SLIIT",
+      "period": "2020 — 2023",
+      "note": null
+    },
+    {
+      "degree": "G.C.E. A/L Physical Science",
+      "school": "Dharmaraja College, Kandy",
+      "period": "2020",
+      "note": null
+    }
+  ],
+  "art": {
+    "count": 26,
+    "caption": "Published 3D models on CGTrader",
+    "detail": "7.8K+ views, since 2016.",
+    "url": null
+  }
+}
