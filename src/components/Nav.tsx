@@ -7,7 +7,7 @@ export default function Nav() {
       <nav aria-label="Primary" className="container-px max-content flex items-center justify-between h-16">
         <a href="#main" className="font-condensed font-bold text-lg tracking-wide uppercase">
           {site.firstName}
-          <span className="text-[var(--dim)]"> {site.lastName}</span>
+          <span className="text-[var(--dim)]">.GG</span>
         </a>
         <ActiveNav items={site.nav} />
         <a href={`mailto:${site.contact.email}`} className="md:hidden mono text-xs link-underline">

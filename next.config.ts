@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
+// Set by the Pages workflow: "" for a <user>.github.io repo, "/<repo>" otherwise.
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  basePath,
+  trailingSlash: true,
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

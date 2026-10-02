@@ -27,7 +27,7 @@ const body = Inter({
 const siteUrl = site.siteUrl;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(new URL(siteUrl).origin),
   title: `${site.name} — ${site.role}`,
   description: site.tagline,
   openGraph: {
@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     description: site.tagline,
     url: siteUrl,
     siteName: site.name,
-    images: ["/opengraph-image"],
     type: "website",
   },
   twitter: {
