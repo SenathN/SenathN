@@ -70,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${condensed.variable} ${mono.variable} ${body.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${condensed.variable} ${mono.variable} ${body.variable}`}>
       <head>
         <ThemeScript />
         <script
