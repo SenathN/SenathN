@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import RangeAccordion from "@/components/RangeAccordion";
 import ArtViewer from "@/components/ArtViewer";
 import Footer from "@/components/Footer";
+import { EmailIcon, LinkedInIcon } from "@/components/icons";
 import { site } from "../../content/site";
 
 function getArtModels(): string[] {
@@ -34,8 +35,19 @@ export default function Home() {
           <RangeAccordion />
         </section>
 
-        <section id="about" className="container-px max-content py-24 md:py-32">
-          <p className="font-display text-3xl md:text-5xl leading-snug max-w-3xl">
+        <section
+          id="about"
+          className="relative container-px max-content py-24 md:py-32 overflow-hidden"
+        >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-24 right-0 w-[60vw] max-w-[640px] aspect-square rounded-full opacity-[0.08]"
+            style={{
+              background:
+                "radial-gradient(circle, var(--accent) 0%, transparent 70%)",
+            }}
+          />
+          <p className="relative font-display text-3xl md:text-5xl leading-snug max-w-3xl">
             {site.statement.split(". ")[0]}.{" "}
             <span className="text-[var(--accent)]">
               {site.statement.split(". ")[1]}
@@ -101,16 +113,42 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="bg-[#6B4DFF] text-[#F5F3FF] py-32">
-          <div className="container-px max-content">
+        <section
+          id="contact"
+          className="relative text-[#F5F3FF] py-32 overflow-hidden"
+          style={{
+            background:
+              "linear-gradient(135deg, #6B4DFF 0%, #4630D0 100%)",
+          }}
+        >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                "radial-gradient(#F5F3FF 1px, transparent 1px)",
+              backgroundSize: "28px 28px",
+            }}
+          />
+          <div className="relative container-px max-content">
             <h2 className="font-display text-4xl md:text-6xl mb-10">
               Let&rsquo;s build something.
             </h2>
             <a
               href={`mailto:${site.email}`}
-              className="font-display text-3xl md:text-6xl underline underline-offset-8 break-all"
+              className="font-display text-3xl md:text-6xl underline underline-offset-8 break-all inline-flex items-center gap-4"
             >
+              <EmailIcon className="w-8 h-8 md:w-12 md:h-12 shrink-0" />
               {site.email}
+            </a>
+            <a
+              href={site.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 flex items-center gap-3 text-lg md:text-xl underline-offset-4 hover:underline w-fit"
+            >
+              <LinkedInIcon className="w-5 h-5 shrink-0" />
+              {site.linkedin}
             </a>
           </div>
         </section>

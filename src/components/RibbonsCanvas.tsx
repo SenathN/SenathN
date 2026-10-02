@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 // Vertex shader: displaces each strand with layered sine fields.
@@ -93,22 +93,15 @@ type Quality = { strands: number; segments: number; dpr: number };
 
 export default function RibbonsCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.01 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  // A ref (not state) so visibility changes pause/resume the render loop
+  // without tearing down and rebuilding the scene — rebuilding on every
+  // IntersectionObserver flip was resetting uTime and snapping the
+  // animation back to its start on every scroll.
+  const visibleRef = useRef(false);
 
   useEffect(() => {
     const elMaybe = containerRef.current;
-    if (!elMaybe || !visible) return;
+    if (!elMaybe) return;
     const el: HTMLDivElement = elMaybe;
 
     let renderer: THREE.WebGLRenderer;
@@ -182,9 +175,17 @@ export default function RibbonsCanvas() {
     }
     document.addEventListener("visibilitychange", onVisibility);
 
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.01 }
+    );
+    io.observe(el);
+
     function animate(t: number) {
       raf = requestAnimationFrame(animate);
-      if (hidden) return;
+      if (hidden || !visibleRef.current) return;
       const dt = t - lastTime;
       lastTime = t;
 
@@ -214,6 +215,7 @@ export default function RibbonsCanvas() {
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      io.disconnect();
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("visibilitychange", onVisibility);
@@ -222,7 +224,7 @@ export default function RibbonsCanvas() {
       renderer.dispose();
       el.removeChild(renderer.domElement);
     };
-  }, [visible]);
+  }, []);
 
   return <div ref={containerRef} className="absolute inset-0 w-full h-full" aria-hidden="true" />;
 }

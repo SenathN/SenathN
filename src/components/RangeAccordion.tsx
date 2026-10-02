@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { site } from "../../content/site";
+import { rangeIcons } from "./icons";
 
 const colorMap: Record<string, { bg: string; text: string }> = {
   violet: { bg: "#6B4DFF", text: "#F5F3FF" },
@@ -21,6 +22,7 @@ export default function RangeAccordion() {
       {site.range.map((panel) => {
         const isOpen = openId === panel.id;
         const colors = colorMap[panel.color];
+        const Icon = rangeIcons[panel.id as keyof typeof rangeIcons];
         return (
           <div
             key={panel.id}
@@ -49,6 +51,11 @@ export default function RangeAccordion() {
               id={`panel-${panel.id}`}
               className="w-full flex flex-col justify-end h-full"
             >
+              <Icon
+                className={`w-6 h-6 mb-3 shrink-0 ${
+                  isOpen ? "" : "md:mb-0 md:mt-3"
+                }`}
+              />
               <span
                 className={`font-display text-2xl md:text-3xl transition-[writing-mode] ${
                   isOpen ? "" : "md:[writing-mode:vertical-rl] md:rotate-180"
