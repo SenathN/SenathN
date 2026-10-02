@@ -61,7 +61,7 @@ body {
   top: 0;
   z-index: 100;
   background: var(--accent);
-  color: #fff;
+  color: #f5f3ff;
   padding: 0.75rem 1.25rem;
   border-radius: 0 0 0.5rem 0;
 }
